@@ -23,12 +23,14 @@ class PreviewFragment : Fragment(R.layout.fragment_preview) {
     private val adapter by lazy(LazyThreadSafetyMode.NONE) {
         CharacterAdapter()
     }
+    private var isFirst = true // uses when backpressed
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        initViewModel()
+        if (isFirst) initViewModel()
+        isFirst = false
     }
 
     private fun setupRecyclerView() {
